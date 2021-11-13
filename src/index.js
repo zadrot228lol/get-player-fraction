@@ -17,6 +17,9 @@ bot.onText(/\/org (.+)/, async (msg) => {
       "Вы забыли указать никнейм. /org [nickname]"
     );
   }
+  if(/[а-яёА-ЯЁ]+/.test(splitedText[1])){
+    return bot.sendMessage(chatId, "Запрещено указывать русские символы в никах!")
+  }
   bot.sendMessage(chatId, "Загрузка...")
   const fraction = await getPlayerFraction(splitedText[1], gosOrgsID);
   bot.sendMessage(
