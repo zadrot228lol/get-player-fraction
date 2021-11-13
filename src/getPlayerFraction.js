@@ -21,7 +21,7 @@ const getPlayerFraction = async (nickname, gosOrgsID) => {
         }
       }
     } catch (e) {
-      break
+      continue
     }
   }
   return null;
