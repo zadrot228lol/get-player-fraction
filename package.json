@@ -1,0 +1,19 @@
+{
+  "name": "check-role",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "scripts": {
+    "start": "nodemon ./src"
+  },
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "axios": "^0.24.0",
+    "cheerio": "^1.0.0-rc.10",
+    "discord.js": "^13.3.1",
+    "node-telegram-bot-api": "^0.54.0"
+  }
+}
