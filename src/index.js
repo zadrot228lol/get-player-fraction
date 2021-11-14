@@ -1,7 +1,6 @@
 const telegramBotAPI = require("node-telegram-bot-api");
 const getPlayerFraction = require("./getPlayerFraction");
 const token = "2073116222:AAEekSo_mMx0-bqfqs-TnTcaIcxkTcoqA8w";
-const gosOrgsID = [1,2,3,4,5,6,7,8,9,10,20,21,22,23,24,26,27,29];
 
 const bot = new telegramBotAPI(token, {
   polling: true,
@@ -20,8 +19,7 @@ bot.onText(/\/org (.+)/, async (msg) => {
   if(/[а-яёА-ЯЁ]+/.test(splitedText[1])){
     return bot.sendMessage(chatId, "Запрещено указывать русские символы в никах!")
   }
-  bot.sendMessage(chatId, "Загрузка...")
-  const fraction = await getPlayerFraction(splitedText[1], gosOrgsID);
+  const fraction = await getPlayerFraction(splitedText[1]);
   bot.sendMessage(
     chatId,
     `${fraction ? fraction : "Игрок не состоит в организации"}`
