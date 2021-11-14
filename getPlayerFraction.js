@@ -79,7 +79,7 @@ const updateAllFraction = async () => {
 // updateAllFraction(); // начальная инициализация
 setInterval(async () => {
   await updateAllFraction();
-}, 1000 * 2); // 5 min
+}, 1000 * 500); // 5 min
 
 const getPlayerFraction = async (nickname) => {
   if (!fractionInfo.inited) {
