@@ -37,7 +37,7 @@ const updateFraction = async (gosOrgID) => {
     return null;
   } catch (e) {
     console.log(e);
-    setInterval(async () => {
+    setTimeout(async () => {
       await updateFraction(gosOrgID);
     }, 5000);
   }
@@ -77,6 +77,7 @@ const getPlayerFraction = async (nickname) => {
           inited: fractionInfo.inited,
           playerRank: fractionMember.rank,
           playerRankName: fractionMember.rankLabel,
+          isLeader: fractionMember.isLeader,
         };
       }
     }
