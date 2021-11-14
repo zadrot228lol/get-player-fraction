@@ -19,7 +19,9 @@ bot.onText(/\/org (.+)/, async (msg) => {
   if(/[а-яёА-ЯЁ]+/.test(splitedText[1])){
     return bot.sendMessage(chatId, "Запрещено указывать русские символы в никах!")
   }
+  console.time();
   const fraction = await getPlayerFraction(splitedText[1]);
+  console.timeEnd();
   bot.sendMessage(
     chatId,
     `${fraction ? fraction : "Игрок не состоит в организации"}`
