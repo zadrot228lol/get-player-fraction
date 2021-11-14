@@ -62,18 +62,29 @@ setInterval(async () => {
 
 const getPlayerFraction = async (nickname) => {
   if (!fractionInfo.inited) {
-    return "Ожидайте. Происходит инициализация фракции";
+    return { 
+      inited: fractionInfo.inited,
+    };
   }
   for (let gosOrgID of gosOrgsID) {
     const fracInfo = nodeCache.get(`fraction-${gosOrgID}`);
     const { items: fractionMembers } = fracInfo;
     for (let fractionMember of fractionMembers) {
       if (fractionMember.name === nickname) {
-        return fracInfo.organizationLabel;
+        return {
+          orgName: fracInfo.organizationLabel,
+          isPlayerInFraction: true,
+          inited: fractionInfo.inited,
+          playerRank: fractionMember.rank,
+          playerRankName: fractionMember.rankLabel,
+        };
       }
     }
   }
-  return null;
+  return {
+    isPlayerInFraction: false,
+    inited: fractionInfo.inited,
+  };
 };
 
 module.exports = getPlayerFraction;

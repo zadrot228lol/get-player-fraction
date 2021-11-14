@@ -19,11 +19,24 @@ bot.onText(/\/org (.+)/, async (msg) => {
   if(/[а-яёА-ЯЁ]+/.test(splitedText[1])){
     return bot.sendMessage(chatId, "Запрещено указывать русские символы в никах!")
   }
-  console.time();
   const fraction = await getPlayerFraction(splitedText[1]);
-  console.timeEnd();
-  bot.sendMessage(
+  if(!fraction.inited){
+    return bot.sendMessage(
+      chatId,
+      `Происходит инициализация данных. Ожидайте. Это может длиться до двух минут. Если будет больше, то обратитесь к разработчикам.`
+    );
+  }
+
+  if(!fraction.isPlayerInFraction){
+    return bot.sendMessage(
+      chatId,
+      "Игрок не состоит в организации"
+    );
+  }
+
+  return bot.sendMessage(
     chatId,
-    `${fraction ? fraction : "Игрок не состоит в организации"}`
+    `Название организации: ${fraction.orgName}\nДолжность(ранг): ${fraction.playerRank}\nДолжность(название): ${fraction.playerRankName}`
   );
+  
 });
