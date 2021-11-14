@@ -58,7 +58,7 @@ const updateAllFraction = async () => {
 updateAllFraction(); // начальная инициализация
 setInterval(async () => {
   await updateAllFraction();
-}, 1000 * 500); // 5 min
+}, (1000 * 60) * 5); // 5 min
 
 const getPlayerFraction = async (nickname) => {
   if (!fractionInfo.inited) {
@@ -70,7 +70,7 @@ const getPlayerFraction = async (nickname) => {
     const fracInfo = nodeCache.get(`fraction-${gosOrgID}`);
     const { items: fractionMembers } = fracInfo;
     for (let fractionMember of fractionMembers) {
-      if (fractionMember.name === nickname) {
+      if (fractionMember.name.toLowerCase() === nickname.toLowerCase()) {
         return {
           orgName: fracInfo.organizationLabel,
           isPlayerInFraction: true,
