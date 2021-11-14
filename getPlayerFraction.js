@@ -54,10 +54,7 @@ const updateFraction = async (gosOrgID) => {
         TE: "trailers",
       },
     });
-    const { data } = res;
-    if (data.status !== 1) {
-      throw new Error("not data");
-    }
+    console.log(res)
     nodeCache.set(`fraction-${gosOrgID}`, data);
   } catch (e) {
     console.log(e);
